@@ -5,9 +5,6 @@
   z-index: 1;
   transition-timing-function: ease-in;
   transition: all 0.5s;
-}
-
-.nav__black {
   background-color: #111;
 }
 

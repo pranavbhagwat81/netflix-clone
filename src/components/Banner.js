@@ -9,14 +9,11 @@ function Banner() {
   useEffect(() => {
     axios.get(requests.fetchNetflixOriginals).then((res) => {
       let index = Math.floor(Math.random() * res.data.results.length);
-      console.log(res.data.results[index]);
       setMovie(res.data.results[index]);
     });
   }, []);
 
   const truncate = (str, length, ending) => {
-    console.log(movie);
-    console.log(str);
     if (str) {
       if (length == null) {
         length = 100;
@@ -54,7 +51,7 @@ function Banner() {
           {truncate(movie?.overview, 150)}
         </h1>
       </div>
-      <div class="banner--bottom"></div>
+      <div className="banner--bottom"></div>
     </header>
   );
 }
