@@ -1,0 +1,19 @@
+.nav {
+  position: sticky;
+  top: 0px;
+  display: flex;
+  object-fit: contain;
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(37, 37, 37, 0.61),
+    #111
+  );
+  z-index: 1;
+}
+
+.nav__logo {
+  padding: 7px 0px 0px 12px;
+  width: 80px;
+  height: 30px;
+}

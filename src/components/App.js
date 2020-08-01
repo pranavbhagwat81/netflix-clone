@@ -4,10 +4,12 @@ import requests from "../requests";
 import "../index.css";
 import "./Banner";
 import Banner from "./Banner";
+import Nav from "./Nav";
 
 function App() {
   return (
     <div className="app">
+      <Nav></Nav>
       <Banner></Banner>
       <Row
         isLarge
