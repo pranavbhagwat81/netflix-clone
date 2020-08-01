@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "../axios";
 import "./row.css";
 
-function Row({ title, fetchURL }) {
+function Row({ title, fetchURL, isLarge }) {
   console.log(fetchURL);
 
   const [movies, setMovies] = useState([]);
@@ -11,7 +11,7 @@ function Row({ title, fetchURL }) {
 
   useEffect(() => {
     axios.get(fetchURL).then((res) => {
-      console.log(res.data);
+      console.log(res.data.results);
       setMovies(res.data.results);
     });
   }, [fetchURL]);
@@ -23,8 +23,11 @@ function Row({ title, fetchURL }) {
         {movies.map((movie) => {
           return (
             <img
-              className="row__poster"
-              src={`${base_url}${movie.poster_path}`}
+              key={movie.id}
+              className={`row__poster ${isLarge && "row__posterLarge"}`}
+              src={`${base_url}${
+                isLarge ? movie.poster_path : movie.backdrop_path
+              }`}
               alt={movie.name}
             ></img>
           );
