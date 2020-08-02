@@ -11,14 +11,14 @@ function App() {
     <div className="app">
       <Nav></Nav>
       <Banner></Banner>
-      <Row
+      {/* <Row
         isLarge
         title="Netflix Originals"
         fetchURL={requests.fetchNetflixOriginals}
-      />
-      <Row title="Trending Now" fetchURL={requests.fetchTrending} />
+      /> */}
+      <Row isLarge title="Trending Now" fetchURL={requests.fetchTrending} />
       <Row title="Romance Movies" fetchURL={requests.fetchRomanceMovies} />
-      <Row title="TopRated Movies" fetchURL={requests.fetchTopRated} />
+      <Row title="Family Movies" fetchURL={requests.fetchFamilyMovies} />
       <Row title="Horror Movies" fetchURL={requests.fetchHorrorMovies} />
       <Row title="Action Movies" fetchURL={requests.fetchActionMovies} />
       <Row title="Comedy Movies" fetchURL={requests.fetchComedyMovies} />

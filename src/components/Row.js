@@ -4,6 +4,7 @@ import "./row.css";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import noposter from "../assets/noposter.jpg";
+import { Typography } from "@material-ui/core";
 
 function Row({ title, fetchURL, isLarge }) {
   const [movies, setMovies] = useState([]);
@@ -50,41 +51,35 @@ function Row({ title, fetchURL, isLarge }) {
   };
 
   const getMoviePoster = (movie, isLarge) => {
-    if (movie.poster_path || movie.backdrop_path) {
-      if (isLarge) {
-        if (movie.poster_path) {
-          return base_url + movie.poster_path;
-        } else {
-          return noposter;
-        }
-      } else {
-        if (movie.backdrop_path) {
-          return base_url + movie.backdrop_path;
-        } else {
-          return noposter;
-        }
-      }
-    } else {
-      return noposter;
+    if (movie.poster_path) {
+      return base_url + movie.poster_path;
+    } else if (movie.backdrop_path) {
+      return base_url + movie.backdrop_path;
     }
   };
 
   return (
     <div className="row">
-      <h2>{title}</h2>
+      <Typography variant="h4" gutterBottom>
+        {title}
+      </Typography>
       <div className="row__posters">
         {movies.map((movie) => {
-          return (
-            <img
-              key={movie.id}
-              onClick={() => {
-                handleClick(movie);
-              }}
-              className={`row__poster ${isLarge && "row__posterLarge"}`}
-              src={getMoviePoster(movie, isLarge)}
-              alt={movie.name}
-            ></img>
-          );
+          if (movie.poster_path || movie.backdrop_path) {
+            return (
+              <img
+                key={movie.id}
+                onClick={() => {
+                  handleClick(movie);
+                }}
+                className={`row__poster ${isLarge && "row__posterLarge"}`}
+                src={getMoviePoster(movie, isLarge)}
+                alt={movie.name}
+              ></img>
+            );
+          } else {
+            return false;
+          }
         })}
       </div>
       {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}></YouTube>}

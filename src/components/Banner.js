@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "../axios";
 import requests from "../requests";
 import "./Banner.css";
+import nobanner from "../assets/nobanner.jpg";
+import { Typography } from "@material-ui/core";
 
 function Banner() {
   const [movie, setMovie] = useState({});
+  const [trailerUrl, setTrailerUrl] = useState("");
 
   useEffect(() => {
-    axios.get(requests.fetchNetflixOriginals).then((res) => {
+    axios.get(requests.fetchTopRated).then((res) => {
       let index = Math.floor(Math.random() * res.data.results.length);
+      console.log(res.data.results[index]);
       setMovie(res.data.results[index]);
     });
   }, []);
@@ -29,27 +33,51 @@ function Banner() {
     }
   };
 
+  const getBannerImage = (movie) => {
+    if (movie?.backdrop_path || movie?.poster_path) {
+      return `url('https://image.tmdb.org/t/p/original${
+        movie?.backdrop_path || movie?.poster_path
+      }')`;
+    } else {
+      return `url(${nobanner})`;
+    }
+  };
+
   return (
     <header
       className="banner"
       style={{
         backgroundSize: "cover",
-        backgroundImage: `url('https://image.tmdb.org/t/p/original${
-          movie?.backdrop_path || movie?.poster_path
-        }')`,
+        backgroundImage: getBannerImage(movie),
       }}
     >
       <div className="banner__contents">
-        <h1 className="banner__title">
-          {movie?.name || movie?.name || movie?.original_name}
-        </h1>
+        <Typography className="banner__title" variant="h2" gutterBottom>
+          {movie?.name || movie?.title || movie?.original_name}
+        </Typography>
         <div className="banner__buttons">
-          <button className="banner__button">Play</button>
-          <button className="banner__button">My List</button>
+          {/*
+          <Typography
+            onClick={() => {
+              handleClick(movie);
+            }}
+            variant="button"
+            gutterBottom
+            className="banner__button"
+          >
+            Play
+          </Typography>
+           <Typography variant="button" gutterBottom className="banner__button">
+            My List
+          </Typography> */}
         </div>
-        <h1 className="banner__description">
+        <Typography
+          variant="subtitle2"
+          gutterBottom
+          className="banner__description"
+        >
           {truncate(movie?.overview, 150)}
-        </h1>
+        </Typography>
       </div>
       <div className="banner--bottom"></div>
     </header>
