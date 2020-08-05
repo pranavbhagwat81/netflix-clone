@@ -31,21 +31,16 @@ function Row({ title, fetchURL, isLarge }) {
     if (trailerUrl) {
       setTrailerUrl("");
     } else {
-      movieTrailer(
-        movie?.name ||
-          movie?.original_title ||
-          movie?.title ||
-          movie?.name ||
-          movie?.original_name,
-        { multi: true }
-      )
-        .then((url) => {
-          const urlParams = new URLSearchParams(new URL(url).search);
-          //setTrailerUrl("lX3vT_Gm_HE");
-          setTrailerUrl(urlParams.get("v"));
-        })
-        .catch((err) => {
-          console.log(err);
+      console.log(movie);
+      axios
+        .get(
+          `http://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=acf0a46c4b8431cdbc95e10c7c33e974`
+        )
+        .then((res) => {
+          console.log(res);
+          console.log(res.data.results[0].id);
+          console.log(res.data.results[0].key);
+          setTrailerUrl(res.data.results[0].key);
         });
     }
   };
@@ -88,3 +83,9 @@ function Row({ title, fetchURL, isLarge }) {
 }
 
 export default Row;
+
+// if (trailerUrl) {
+//   setTrailerUrl("");
+// } else {
+//   setTrailerUrl(urlParams.get("v"));
+// }
