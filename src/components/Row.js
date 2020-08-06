@@ -56,10 +56,8 @@ function Row({ title, fetchURL, isLarge }) {
       <Typography variant="h4" gutterBottom>
         {title}
       </Typography>
+
       <div className="row__posters">
-        {/* <a href="" className="prev">
-          ‹
-        </a> */}
         {movies.map((movie) => {
           if (movie.poster_path || movie.backdrop_path) {
             return (
@@ -77,10 +75,8 @@ function Row({ title, fetchURL, isLarge }) {
             return false;
           }
         })}
-        {/* <a href="" className="next">
-          ›
-        </a> */}
       </div>
+
       {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}></YouTube>}
     </div>
   );
