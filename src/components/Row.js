@@ -2,19 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "../axios";
 import "./row.css";
 import YouTube from "react-youtube";
-import movieTrailer from "movie-trailer";
-import noposter from "../assets/noposter.jpg";
 import { Typography } from "@material-ui/core";
 
 function Row({ title, fetchURL, isLarge }) {
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState("");
-  const base_url = "https://image.tmdb.org/t/p/original/";
+  const base_url = "https://image.tmdb.org/t/p/w185/";
   //A snippet of code which runs when props changes.
 
   useEffect(() => {
     axios.get(fetchURL).then((res) => {
-      console.log(res.data.results);
+      //console.log(res.data.results);
       setMovies(res.data.results);
     });
   }, [fetchURL]);
@@ -31,15 +29,15 @@ function Row({ title, fetchURL, isLarge }) {
     if (trailerUrl) {
       setTrailerUrl("");
     } else {
-      console.log(movie);
+      //console.log(movie);
       axios
         .get(
-          `http://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=acf0a46c4b8431cdbc95e10c7c33e974`
+          `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=acf0a46c4b8431cdbc95e10c7c33e974`
         )
         .then((res) => {
-          console.log(res);
-          console.log(res.data.results[0].id);
-          console.log(res.data.results[0].key);
+          //console.log(res);
+          //console.log(res.data.results[0].id);
+          //console.log(res.data.results[0].key);
           setTrailerUrl(res.data.results[0].key);
         });
     }
@@ -59,6 +57,9 @@ function Row({ title, fetchURL, isLarge }) {
         {title}
       </Typography>
       <div className="row__posters">
+        {/* <a href="" className="prev">
+          ‹
+        </a> */}
         {movies.map((movie) => {
           if (movie.poster_path || movie.backdrop_path) {
             return (
@@ -76,6 +77,9 @@ function Row({ title, fetchURL, isLarge }) {
             return false;
           }
         })}
+        {/* <a href="" className="next">
+          ›
+        </a> */}
       </div>
       {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}></YouTube>}
     </div>

@@ -5,10 +5,16 @@ import "../index.css";
 import "./Banner";
 import Banner from "./Banner";
 import Nav from "./Nav";
+import Carousel from "./Carousel";
 
 function App() {
   return (
     <div className="app">
+      {/* <Carousel
+        title="Trending Now"
+        fetchURL={requests.fetchTrending}
+        isLarge
+      /> */}
       <Nav></Nav>
       <Banner></Banner>
       {/* <Row

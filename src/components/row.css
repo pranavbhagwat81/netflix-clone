@@ -1,9 +1,11 @@
 .row {
+  margin-top: 50px;
   color: white;
   margin-left: 20px;
 }
 
 .row__posters {
+  margin-top: 20px;
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
@@ -27,9 +29,9 @@
 }
 
 .row__poster:hover {
-  transform: scale(1.14);
+  transform: scale(1.08);
 }
 
 .row__posterLarge:hover {
-  transform: scale(1.15);
+  transform: scale(1.1);
 }

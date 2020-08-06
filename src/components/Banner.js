@@ -7,12 +7,11 @@ import { Typography } from "@material-ui/core";
 
 function Banner() {
   const [movie, setMovie] = useState({});
-  const [trailerUrl, setTrailerUrl] = useState("");
 
   useEffect(() => {
     axios.get(requests.fetchTopRated).then((res) => {
       let index = Math.floor(Math.random() * res.data.results.length);
-      console.log(res.data.results[index]);
+      //console.log(res.data.results[index]);
       setMovie(res.data.results[index]);
     });
   }, []);
@@ -71,13 +70,13 @@ function Banner() {
             My List
           </Typography> */}
         </div>
-        <Typography
+        {/* <Typography
           variant="subtitle2"
           gutterBottom
           className="banner__description"
         >
           {truncate(movie?.overview, 150)}
-        </Typography>
+        </Typography> */}
       </div>
       <div className="banner--bottom"></div>
     </header>
