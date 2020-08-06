@@ -16,21 +16,21 @@ function Banner() {
     });
   }, []);
 
-  const truncate = (str, length, ending) => {
-    if (str) {
-      if (length == null) {
-        length = 100;
-      }
-      if (ending == null) {
-        ending = "...";
-      }
-      if (str.length > length) {
-        return str.substring(0, length - ending.length) + ending;
-      } else {
-        return str;
-      }
-    }
-  };
+  // const truncate = (str, length, ending) => {
+  //   if (str) {
+  //     if (length == null) {
+  //       length = 100;
+  //     }
+  //     if (ending == null) {
+  //       ending = "...";
+  //     }
+  //     if (str.length > length) {
+  //       return str.substring(0, length - ending.length) + ending;
+  //     } else {
+  //       return str;
+  //     }
+  //   }
+  // };
 
   const getBannerImage = (movie) => {
     if (movie?.backdrop_path || movie?.poster_path) {
