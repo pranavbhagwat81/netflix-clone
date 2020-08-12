@@ -1,36 +1,44 @@
 import React from "react";
-import Nav from "./Nav";
-import profile_pic from "../assets/profile_pic.jpg";
+import vijay_profile_pic from "../assets/vijay.jpg";
+import anand_profile_pic from "../assets/anand.jpg";
+import children_profile_pic from "../assets/children.jpg";
 import "./ProfilesView.css";
 
 function ProfileSelector(props) {
-  const renderProfile = (userName) => {
+  const renderProfile = (profile) => {
     return (
       <div
         onClick={() => {
-          props.onSetProfile(userName);
+          props.onSetProfile(profile.name);
         }}
         className="col-xs-12 profileselector__profile"
       >
         <img
-          src={profile_pic}
+          src={profile.pic}
           alt="profile_pic"
           className="profileselector__profileIcon"
         />
-        <p className="profileselector__profileName">{userName}</p>
+        <p className="profileselector__profileName">{profile.name}</p>
       </div>
     );
   };
+
+  const profiles = [
+    { name: "Anand", pic: anand_profile_pic },
+    { name: "Vijay", pic: vijay_profile_pic },
+    { name: "Children", pic: children_profile_pic },
+  ];
 
   return (
     <div className="profileselector">
       <div className="profileselector__title">Who's watching ?</div>
       <div className=" row profileselector__users">
-        {renderProfile("Pavan Divekar")}
-        {renderProfile("Pranav Bhagwat")}
-        {renderProfile("Jaydeep Bobade")}
-        {renderProfile("Akshay Dongave")}
-        {renderProfile("Rohan Khare")}
+        {profiles.map((profile) => {
+          return renderProfile(profile);
+        })}
+        {/* {renderProfile("Anand")}
+        {renderProfile("Vijay")}
+        {renderProfile("Children")} */}
       </div>
       {/* <div className="profileselector__confirmBtn">Continue</div> */}
     </div>

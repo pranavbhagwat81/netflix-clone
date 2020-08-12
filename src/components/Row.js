@@ -28,6 +28,16 @@ function Row({ title, fetchURL, isLarge }) {
   const handleClick = (movie) => {
     if (trailerUrl) {
       setTrailerUrl("");
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=acf0a46c4b8431cdbc95e10c7c33e974`
+        )
+        .then((res) => {
+          //console.log(res);
+          //console.log(res.data.results[0].id);
+          //console.log(res.data.results[0].key);
+          setTrailerUrl(res.data.results[0].key);
+        });
     } else {
       //console.log(movie);
       axios
@@ -77,7 +87,13 @@ function Row({ title, fetchURL, isLarge }) {
         })}
       </div>
 
-      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}></YouTube>}
+      {trailerUrl && (
+        <YouTube
+          className="youtube__popup"
+          videoId={trailerUrl}
+          opts={opts}
+        ></YouTube>
+      )}
     </div>
   );
 }
