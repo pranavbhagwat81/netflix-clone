@@ -1,11 +1,12 @@
 import { useQuery } from "react-query";
+import { API_KEY, MOVIE_DB_BASE_URL } from '../../constants'
 
 
 export const useFetchMovieTrailer = (id) => {
 
     const fetchMovieTrailer = async () => {
         return axios.get(
-            `https://api.themoviedb.org/3/movie/${id}/videos?api_key=acf0a46c4b8431cdbc95e10c7c33e974`
+            `${MOVIE_DB_BASE_URL}/movie/${id}/videos?api_key=${API_KEY}`
         ).then((res) => res.data)
     }
 

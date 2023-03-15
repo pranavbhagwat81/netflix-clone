@@ -1,28 +1,23 @@
 import axios from 'axios';
 import React from 'react'
 import "./row.css";
+import { API_KEY, MOVIE_DB_BASE_URL, IMG_BASE_URL_w185 } from '../constants'
 
-const MovieBlock = ({ movie, isLarge, setTrailerUrl, trailerUrl }) => {
+const MovieBlock = ({ movie, isLarge, setTrailerUrl, trailerUrl, title }) => {
 
-    const base_url = "https://image.tmdb.org/t/p/w185/";
+    const base_url = IMG_BASE_URL_w185;
 
     const handleClick = (movie) => {
-        if (trailerUrl) {
-            setTrailerUrl("");
-        }
+        setTrailerUrl("");
         axios
             .get(
-                `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=acf0a46c4b8431cdbc95e10c7c33e974`
+                `${MOVIE_DB_BASE_URL}/movie/${movie.id}/videos?api_key=${API_KEY}`
             )
             .then((res) => {
-                //console.log(res);
-                //console.log(res.data.results[0].id);
-                //console.log(res.data.results[0].key);
                 setTrailerUrl(res.data.results[0].key);
             })
 
     };
-
 
     const getMoviePoster = (movie, isLarge) => {
         if (movie.poster_path) {

@@ -15,12 +15,11 @@ function Row({ title, fetchURL, isLarge }) {
     height: "390",
     width: "100%",
     playerVars: {
-      autoplay: 1,
+      autoplay: 0,
     },
   };
 
   if (isLoading || isFetching) return <span>Loading..</span>
-
   return (
     <div className="row">
       <Typography variant="h4" gutterBottom>
@@ -30,7 +29,7 @@ function Row({ title, fetchURL, isLarge }) {
       <div className="row__posters">
         {movies.map((movie) => {
           if (movie.poster_path || movie.backdrop_path) {
-            return <MovieBlock movie={movie} isLarge={isLarge} setTrailerUrl={setTrailerUrl} trailerUrl={trailerUrl} />
+            return <MovieBlock movie={movie} isLarge={isLarge} setTrailerUrl={setTrailerUrl} trailerUrl={movie.id} title={title} />
           } else {
             return false;
           }

@@ -15,14 +15,13 @@ function App() {
       <div className="app">
         <Nav></Nav>
         <Banner></Banner>
-        <Row isLarge title="Trending Now" fetchURL={requests.fetchTrending} />
         <Row isLarge title="Top Rated" fetchURL={requests.fetchTopRated} />
-        <Row title="Romance Movies" fetchURL={requests.fetchRomanceMovies} />
-        <Row title="Family Movies" fetchURL={requests.fetchFamilyMovies} />
-        <Row title="Horror Movies" fetchURL={requests.fetchHorrorMovies} />
-        <Row title="Action Movies" fetchURL={requests.fetchActionMovies} />
-        <Row title="Comedy Movies" fetchURL={requests.fetchComedyMovies} />
-        <Row title="Documentaries" fetchURL={requests.fetchDocumentaries} />
+        <Row title="In Theatres" fetchURL={requests.fetchInTheatres} />
+        <Row title="Up Coming" fetchURL={requests.fetchUpcoming} />
+        <Row title="Family" fetchURL={requests.fetchFamilyMovies} />
+        <Row title="Horror" fetchURL={requests.fetchHorrorMovies} />
+        <Row title="Action" fetchURL={requests.fetchActionMovies} />
+        <Row title="Comedy" fetchURL={requests.fetchComedyMovies} />
       </div>
     );
   } else {
