@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import requests from "../requests";
 import "./Banner.css";
 import nobanner from "../assets/nobanner.jpg";
@@ -9,8 +9,16 @@ import { IMG_BASE_URL_ORIGINAL } from '../constants'
 function Banner() {
   const key = 'Top Rated'
 
-  const { isLoading, data: movies } = useFetchMoviesList(key, requests.fetchTopRated)
-  const previewMovie = !isLoading && movies[Math.floor(Math.random() * movies.length)];
+  const { isLoading, data: movies } = useFetchMoviesList(key, requests.fetchTopRated,3000)
+  const [movieIndex, setMovieIndex] = useState(null);
+
+  if(!isLoading){
+    setTimeout(()=>{
+      setMovieIndex(Math.floor(Math.random() * movies.length))
+    },5000)
+  }
+
+  const previewMovie = !isLoading && movies[movieIndex];
 
   const getBannerImage = (movie) => {
     if (movie?.backdrop_path || movie?.poster_path) {
@@ -35,6 +43,7 @@ function Banner() {
       style={{
         backgroundSize: "cover",
         backgroundImage: getBannerImage(previewMovie),
+        backgroundPosition: "center center",
       }}
     >
       <div className="banner__contents">

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { BASE_URL } from '../../constants'
 
-export const useFetchMoviesList = (title, fetchURL) => {
+export const useFetchMoviesList = (title, fetchURL,timeout) => {
 
     const fetchMoviesList = async () => { return axios.get(`${BASE_URL}${fetchURL}`).then((res) => res.data.results) }
 
@@ -10,7 +10,6 @@ export const useFetchMoviesList = (title, fetchURL) => {
         {
             refetchOnWindowFocus: false,
             refetchOnMount: false,
-
         }
     );
 }
