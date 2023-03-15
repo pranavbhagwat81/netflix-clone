@@ -12,8 +12,6 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-.profileselector {
-}
 
 .profileselector__title {
   margin-top: 60px;
@@ -87,4 +85,30 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (max-width: 500px) {
+  .profileselector__users {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .profileselector__title {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: gray;
+  }
+
+  .profileselector__profileIcon {
+    height: 170px;
+    width: 200px;
+    object-fit: contain;
+    transition: 0.5s ease-in-out;
+}
 }

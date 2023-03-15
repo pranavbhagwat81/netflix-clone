@@ -3,6 +3,7 @@ import vijay_profile_pic from "../assets/vijay.jpg";
 import anand_profile_pic from "../assets/anand.jpg";
 import children_profile_pic from "../assets/children.jpg";
 import "./ProfilesView.css";
+import { Typography } from "@material-ui/core";
 
 function ProfileSelector(props) {
   const renderProfile = (profile) => {
@@ -18,7 +19,11 @@ function ProfileSelector(props) {
           alt="profile_pic"
           className="profileselector__profileIcon"
         />
-        <p className="profileselector__profileName">{profile.name}</p>
+        <p className="profileselector__profileName">
+          <Typography variant="h4" gutterBottom>
+            {profile.name}
+          </Typography>
+        </p>
       </div>
     );
   };
@@ -31,16 +36,14 @@ function ProfileSelector(props) {
 
   return (
     <div className="profileselector">
-      <div className="profileselector__title">Who's watching ?</div>
+      <Typography gutterBottom>
+        <div className="profileselector__title">Who's watching ?</div>
+      </Typography>
       <div className=" row profileselector__users">
         {profiles.map((profile) => {
           return renderProfile(profile);
         })}
-        {/* {renderProfile("Anand")}
-        {renderProfile("Vijay")}
-        {renderProfile("Children")} */}
       </div>
-      {/* <div className="profileselector__confirmBtn">Continue</div> */}
     </div>
   );
 }

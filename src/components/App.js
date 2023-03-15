@@ -16,6 +16,7 @@ function App() {
         <Nav></Nav>
         <Banner></Banner>
         <Row isLarge title="Trending Now" fetchURL={requests.fetchTrending} />
+        <Row isLarge title="Top Rated" fetchURL={requests.fetchTopRated} />
         <Row title="Romance Movies" fetchURL={requests.fetchRomanceMovies} />
         <Row title="Family Movies" fetchURL={requests.fetchFamilyMovies} />
         <Row title="Horror Movies" fetchURL={requests.fetchHorrorMovies} />
