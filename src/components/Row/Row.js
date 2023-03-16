@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./row.css";
 import YouTube from "react-youtube";
 import { Typography } from "@material-ui/core";
-import { useFetchMoviesList } from './hooks/useFetchMoviesList'
-import MovieBlock from "./MovieBlock";
+import { useFetchMoviesList } from '../../hooks/useFetchMoviesList'
+import MovieBlock from "../MovieBlock";
 
 function Row({ title, fetchURL, isLarge }) {
 
@@ -15,7 +15,7 @@ function Row({ title, fetchURL, isLarge }) {
     height: "390",
     width: "100%",
     playerVars: {
-      autoplay: 0,
+      autoplay: 1,
     },
   };
 

@@ -1,7 +1,7 @@
 import React from "react";
-import vijay_profile_pic from "../assets/vijay.jpg";
-import anand_profile_pic from "../assets/anand.jpg";
-import children_profile_pic from "../assets/children.jpg";
+import vijay_profile_pic from "../../assets/vijay.jpg";
+import anand_profile_pic from "../../assets/anand.jpg";
+import children_profile_pic from "../../assets/children.jpg";
 import "./ProfilesView.css";
 import { Typography } from "@material-ui/core";
 
@@ -9,6 +9,7 @@ function ProfileSelector(props) {
   const renderProfile = (profile) => {
     return (
       <div
+        key={profile.name}
         onClick={() => {
           props.onSetProfile(profile.name);
         }}
@@ -19,11 +20,11 @@ function ProfileSelector(props) {
           alt="profile_pic"
           className="profileselector__profileIcon"
         />
-        <p className="profileselector__profileName">
-          <Typography variant="h4" gutterBottom>
+        <span className="profileselector__profileName">
+          <Typography component={'span'} variant="h4" gutterBottom>
             {profile.name}
           </Typography>
-        </p>
+        </span>
       </div>
     );
   };

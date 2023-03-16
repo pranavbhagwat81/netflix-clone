@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import requests from "../requests";
+import React from "react";
+import requests from "../../requests";
 import "./Banner.css";
-import nobanner from "../assets/nobanner.jpg";
+import nobanner from "../../assets/nobanner.jpg";
 import { Typography } from "@material-ui/core";
-import { useFetchRandomMovie } from "./hooks/useFetchRandomMovie";
-import { IMG_BASE_URL_ORIGINAL, BANNER_GENRE_KEY } from '../constants'
+import { useFetchRandomMovie } from "../../hooks/useFetchRandomMovie";
+import { IMG_BASE_URL_ORIGINAL, BANNER_GENRE_KEY } from '../../constants'
 
 function Banner() {
-  const key = 'Top Rated'
-
+  
   const { isLoading, randomMovie} = useFetchRandomMovie(BANNER_GENRE_KEY,requests.fetchTopRated,5000 )
 
   const getBannerImage = (movie) => {

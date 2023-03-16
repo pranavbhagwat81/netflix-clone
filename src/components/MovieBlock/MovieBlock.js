@@ -1,10 +1,9 @@
-import axios from 'axios';
 import React from 'react'
-import "./row.css";
-import { IMG_BASE_URL_w185 } from '../constants'
-import { useFetchMovieDetails } from './hooks/useFetchMovieDetails'
+import "../Row/row.css";
+import { IMG_BASE_URL_w185 } from '../../constants'
+import { useFetchMovieDetails } from '../../hooks/useFetchMovieDetails'
 
-const MovieBlock = ({ movie, isLarge, setTrailerUrl, trailerUrl, title }) => {
+const MovieBlock = ({ movie, isLarge, setTrailerUrl }) => {
 
     const base_url = IMG_BASE_URL_w185;
 
@@ -25,6 +24,8 @@ const MovieBlock = ({ movie, isLarge, setTrailerUrl, trailerUrl, title }) => {
             return base_url + movie.backdrop_path;
         }
     };
+
+    if(isLoading) return null
     return (
         <img
             key={movie.id}

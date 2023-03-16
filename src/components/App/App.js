@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Row from "./Row";
-import requests from "../requests";
-import "../index.css";
-import "./Banner";
-import Banner from "./Banner";
-import Nav from "./Nav";
-import ProfileView from "./ProfilesView";
+import Row from "../Row";
+import requests from "../../requests";
+import "../../index.css";
+import Banner from "../Banner";
+import Nav from "../Nav";
+import ProfileView from "../Profiles";
 
 function App() {
   const [profile, setProfile] = useState(null);
@@ -39,7 +38,7 @@ function App() {
     {
       key: 'Action',
       isLarge: false,
-      fetchURL: requests.fetchTopRated
+      fetchURL: requests.fetchActionMovies
     },
     {
       key: 'Comedy',

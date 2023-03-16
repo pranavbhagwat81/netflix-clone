@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { API_KEY, MOVIE_DB_BASE_URL } from '../../constants'
+import { API_KEY, MOVIE_DB_BASE_URL } from '../constants'
 
 
 export const useFetchMovieTrailer = (id) => {

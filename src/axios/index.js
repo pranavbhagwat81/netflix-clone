@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { MOVIE_DB_BASE_URL } from './constants'
+import { MOVIE_DB_BASE_URL } from '../constants'
 
 
 //base url to make requests to the movie databse.
