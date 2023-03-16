@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import "./row.css";
-import { API_KEY, MOVIE_DB_BASE_URL, IMG_BASE_URL_w185 } from '../constants'
+import { IMG_BASE_URL_w185 } from '../constants'
 import { useFetchMovieDetails } from './hooks/useFetchMovieDetails'
 
 const MovieBlock = ({ movie, isLarge, setTrailerUrl, trailerUrl, title }) => {
@@ -16,14 +16,6 @@ const MovieBlock = ({ movie, isLarge, setTrailerUrl, trailerUrl, title }) => {
     const handleClick = (movie) => {
         setTrailerUrl("");
         refetch();
-        // axios
-        //     .get(
-        //         `${MOVIE_DB_BASE_URL}/movie/${movie.id}/videos?api_key=${API_KEY}`
-        //     )
-        //     .then((res) => {
-        //         setTrailerUrl(res.data.results[0].key);
-        //     })
-
     };
 
     const getMoviePoster = (movie, isLarge) => {

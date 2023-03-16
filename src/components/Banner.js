@@ -3,22 +3,13 @@ import requests from "../requests";
 import "./Banner.css";
 import nobanner from "../assets/nobanner.jpg";
 import { Typography } from "@material-ui/core";
-import { useFetchMoviesList } from "./hooks/useFetchMoviesList";
-import { IMG_BASE_URL_ORIGINAL } from '../constants'
+import { useFetchRandomMovie } from "./hooks/useFetchRandomMovie";
+import { IMG_BASE_URL_ORIGINAL, BANNER_GENRE_KEY } from '../constants'
 
 function Banner() {
   const key = 'Top Rated'
 
-  const { isLoading, data: movies } = useFetchMoviesList(key, requests.fetchTopRated,3000)
-  const [movieIndex, setMovieIndex] = useState(null);
-
-  if(!isLoading){
-    setTimeout(()=>{
-      setMovieIndex(Math.floor(Math.random() * movies.length))
-    },5000)
-  }
-
-  const previewMovie = !isLoading && movies[movieIndex];
+  const { isLoading, randomMovie} = useFetchRandomMovie(BANNER_GENRE_KEY,requests.fetchTopRated,5000 )
 
   const getBannerImage = (movie) => {
     if (movie?.backdrop_path || movie?.poster_path) {
@@ -42,13 +33,13 @@ function Banner() {
       className="banner"
       style={{
         backgroundSize: "cover",
-        backgroundImage: getBannerImage(previewMovie),
+        backgroundImage: getBannerImage(randomMovie),
         backgroundPosition: "center center",
       }}
     >
       <div className="banner__contents">
         <Typography className="banner__title" variant="h2" gutterBottom >
-          {getMovieTitle(previewMovie)}
+          {getMovieTitle(randomMovie)}
         </Typography>
         <div className="banner__buttons">
         </div>
