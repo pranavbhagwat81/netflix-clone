@@ -2,20 +2,27 @@ import axios from 'axios';
 import React from 'react'
 import "./row.css";
 import { API_KEY, MOVIE_DB_BASE_URL, IMG_BASE_URL_w185 } from '../constants'
+import { useFetchMovieDetails } from './hooks/useFetchMovieDetails'
 
 const MovieBlock = ({ movie, isLarge, setTrailerUrl, trailerUrl, title }) => {
 
     const base_url = IMG_BASE_URL_w185;
 
+    const { isLoading, data, refetch} = useFetchMovieDetails(movie.id);
+    if(!isLoading){
+        data?.length && setTrailerUrl(data[0].key)
+    }
+
     const handleClick = (movie) => {
         setTrailerUrl("");
-        axios
-            .get(
-                `${MOVIE_DB_BASE_URL}/movie/${movie.id}/videos?api_key=${API_KEY}`
-            )
-            .then((res) => {
-                setTrailerUrl(res.data.results[0].key);
-            })
+        refetch();
+        // axios
+        //     .get(
+        //         `${MOVIE_DB_BASE_URL}/movie/${movie.id}/videos?api_key=${API_KEY}`
+        //     )
+        //     .then((res) => {
+        //         setTrailerUrl(res.data.results[0].key);
+        //     })
 
     };
 
