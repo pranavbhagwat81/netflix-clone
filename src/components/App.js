@@ -10,18 +10,56 @@ import ProfileView from "./ProfilesView";
 function App() {
   const [profile, setProfile] = useState(null);
 
+  const rowData = [
+    {
+      key: 'Top Rated',
+      isLarge: true,
+      fetchURL: requests.fetchTopRated
+    },
+    {
+      key: 'In Theatres',
+      isLarge: false,
+      fetchURL: requests.fetchInTheatres
+    },
+    {
+      key: 'Up Coming',
+      isLarge: false,
+      fetchURL: requests.fetchUpcoming
+    },
+    {
+      key: 'Family',
+      isLarge: false,
+      fetchURL: requests.fetchFamilyMovies
+    },
+    {
+      key: 'Horror',
+      isLarge: false,
+      fetchURL: requests.fetchHorrorMovies
+    },
+    {
+      key: 'Action',
+      isLarge: false,
+      fetchURL: requests.fetchTopRated
+    },
+    {
+      key: 'Comedy',
+      isLarge: false,
+      fetchURL: requests.fetchComedyMovies
+    }
+  ]
+
   if (profile) {
     return (
       <div className="app">
         <Nav></Nav>
         <Banner></Banner>
-        <Row isLarge title="Top Rated" fetchURL={requests.fetchTopRated} />
-        <Row title="In Theatres" fetchURL={requests.fetchInTheatres} />
-        <Row title="Up Coming" fetchURL={requests.fetchUpcoming} />
-        <Row title="Family" fetchURL={requests.fetchFamilyMovies} />
-        <Row title="Horror" fetchURL={requests.fetchHorrorMovies} />
-        <Row title="Action" fetchURL={requests.fetchActionMovies} />
-        <Row title="Comedy" fetchURL={requests.fetchComedyMovies} />
+        <div>
+          {
+            rowData.map((row) => {
+              return <Row key={row.key} title={row.key} fetchURL={row.fetchURL} />
+            })
+          }
+        </div>
       </div>
     );
   } else {

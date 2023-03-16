@@ -29,7 +29,7 @@ function Row({ title, fetchURL, isLarge }) {
       <div className="row__posters">
         {movies.map((movie) => {
           if (movie.poster_path || movie.backdrop_path) {
-            return <MovieBlock movie={movie} isLarge={isLarge} setTrailerUrl={setTrailerUrl} trailerUrl={movie.id} title={title} />
+            return <MovieBlock key={movie.id} movie={movie} isLarge={isLarge} setTrailerUrl={setTrailerUrl} trailerUrl={movie.id} title={title} />
           } else {
             return false;
           }
