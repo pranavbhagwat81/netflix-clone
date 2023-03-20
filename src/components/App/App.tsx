@@ -3,13 +3,16 @@ import Row from "../Row";
 import requests from "../../requests";
 import "../../index.css";
 import Banner from "../Banner";
-import Nav from "../Nav";
 import ProfileView from "../Profiles";
+import Nav from "../Nav";
 
-function App() {
-  const [profile, setProfile] = useState(null);
+//DTO
+import { movieBlockDTO, ProfileInfoDTO } from '../../dto'
 
-  const rowData = [
+function App(): JSX.Element {
+  const [profile, setProfile] = useState<ProfileInfoDTO | null>(null);
+
+  const rowData: movieBlockDTO[] = [
     {
       key: 'Top Rated',
       isLarge: true,

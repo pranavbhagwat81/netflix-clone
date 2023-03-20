@@ -5,13 +5,20 @@ import children_profile_pic from "../../assets/children.jpg";
 import "./ProfilesView.css";
 import { Typography } from "@material-ui/core";
 
-function ProfileSelector(props) {
-  const renderProfile = (profile) => {
+//DTO
+import { ProfileInfoDTO } from '../../dto'
+
+interface Props {
+  onSetProfile: Function
+}
+
+function ProfileSelector({onSetProfile}: Props) {
+  const renderProfile = (profile: ProfileInfoDTO) => {
     return (
       <div
         key={profile.name}
         onClick={() => {
-          props.onSetProfile(profile.name);
+          onSetProfile(profile.name);
         }}
         className="col-xs-12 profileselector__profile"
       >
@@ -29,7 +36,7 @@ function ProfileSelector(props) {
     );
   };
 
-  const profiles = [
+  const profiles: ProfileInfoDTO[] = [
     { name: "Anand", pic: anand_profile_pic },
     { name: "Vijay", pic: vijay_profile_pic },
     { name: "Children", pic: children_profile_pic },

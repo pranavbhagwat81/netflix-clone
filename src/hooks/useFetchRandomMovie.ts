@@ -1,10 +1,11 @@
 import { useState } from "react"
 import { useFetchMoviesList } from "./useFetchMoviesList"
+import { GENRE_TYPE_DTO, movieDTO} from '../dto'
 
-export const useFetchRandomMovie = (title, fetchURL, timeout) => {
+export const useFetchRandomMovie = (title: GENRE_TYPE_DTO, fetchURL: string, timeout: number) => {
 
     const { isLoading, data: movies } = useFetchMoviesList(title, fetchURL)
-    const [randomMovie, setrandomMovie] = useState(null)
+    const [randomMovie, setrandomMovie] = useState<movieDTO | null>(null)
     let index = 0;
 
     if (!isLoading && timeout) {

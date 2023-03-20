@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Nav.css";
 
-function Nav() {
-  const [show, handleShow] = useState("");
+const Nav = (): JSX.Element => {
+  const [show, handleShow] = useState<boolean>(false);
 
   useEffect(() => {
 

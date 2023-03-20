@@ -6,11 +6,15 @@ import { Typography } from "@material-ui/core";
 import { useFetchRandomMovie } from "../../hooks/useFetchRandomMovie";
 import { IMG_BASE_URL_ORIGINAL, BANNER_GENRE_KEY } from '../../constants'
 
-function Banner() {
+//DTO
+import { movieDTO } from '../../dto'
+
+
+const Banner = (): JSX.Element | null => {
   
   const { isLoading, randomMovie} = useFetchRandomMovie(BANNER_GENRE_KEY,requests.fetchTopRated,5000 )
 
-  const getBannerImage = (movie) => {
+  const getBannerImage = (movie: movieDTO | null) => {
     if (movie?.backdrop_path || movie?.poster_path) {
       return `url('${IMG_BASE_URL_ORIGINAL}${movie?.backdrop_path || movie?.poster_path
         }')`;
@@ -19,7 +23,7 @@ function Banner() {
     }
   };
 
-  const getMovieTitle = (movie) => {
+  const getMovieTitle = (movie: movieDTO | null) => {
     return movie?.name || movie?.title || movie?.original_name
   }
 

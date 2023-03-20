@@ -1,12 +1,13 @@
 import { API_KEY } from '../constants'
 
 
-const getDiscoverQueryString = (content, genreId) => {
+const getDiscoverQueryString = (content: string, genreId?: number): string => {
   if (content === 'movie') {
     return `/discover/${content}?api_key=${API_KEY}&with_genres=${genreId}`
   } else if (content === 'netflix') {
     return `/discover/tv?api_key=${API_KEY}&with_networks=123`
   }
+  return '';
 }
 
 const requests = {

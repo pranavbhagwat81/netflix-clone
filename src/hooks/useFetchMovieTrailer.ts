@@ -1,8 +1,9 @@
 import { useQuery } from "react-query";
 import { API_KEY, MOVIE_DB_BASE_URL } from '../constants'
+import axios from 'axios'
+ 
 
-
-export const useFetchMovieTrailer = (id) => {
+export const useFetchMovieTrailer = (id: string) => {
 
     const fetchMovieTrailer = async () => {
         return axios.get(

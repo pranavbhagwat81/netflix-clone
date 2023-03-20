@@ -5,9 +5,18 @@ import { Typography } from "@material-ui/core";
 import { useFetchMoviesList } from '../../hooks/useFetchMoviesList'
 import MovieBlock from "../MovieBlock";
 
-function Row({ title, fetchURL, isLarge }) {
+//DTO
+import { GENRE_TYPE_DTO, movieDTO } from '../../dto'
 
-  const [trailerUrl, setTrailerUrl] = useState("");
+interface Props {
+  title: GENRE_TYPE_DTO,
+  fetchURL: string,
+  isLarge?: string
+}
+
+function Row({ title, fetchURL, isLarge }: Props): JSX.Element | null {
+
+  const [trailerUrl, setTrailerUrl] = useState<string>("");
 
   const { isLoading, error, data: movies, isFetching } = useFetchMoviesList(title, fetchURL)
 
@@ -19,17 +28,17 @@ function Row({ title, fetchURL, isLarge }) {
     },
   };
 
-  if (isLoading || isFetching) return <span>Loading..</span>
+  if (isLoading || isFetching || error) return null;
   return (
     <div className="row">
       <Typography variant="h4" gutterBottom>
         {title}
       </Typography>
-
+    
       <div className="row__posters">
-        {movies.map((movie) => {
+        {movies.map((movie: movieDTO) => {
           if (movie.poster_path || movie.backdrop_path) {
-            return <MovieBlock key={movie.id} movie={movie} isLarge={isLarge} setTrailerUrl={setTrailerUrl} trailerUrl={movie.id} title={title} />
+            return <MovieBlock key={movie.id} movie={movie} isLarge={isLarge} setTrailerUrl={setTrailerUrl} />
           } else {
             return false;
           }
