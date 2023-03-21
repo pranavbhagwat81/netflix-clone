@@ -55,13 +55,13 @@ function App(): JSX.Element {
       <div className="app">
         <Nav></Nav>
         <Banner></Banner>
-        <div>
+        <>
           {
             rowData.map((row) => {
               return <Row key={row.key} title={row.key} fetchURL={row.fetchURL} />
             })
           }
-        </div>
+        </>
       </div>
     );
   } else {

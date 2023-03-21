@@ -27,7 +27,6 @@ const MovieBlock = ({ movie, isLarge, setTrailerUrl }: MovieBlockProps): JSX.Ele
     };
 
     const getMoviePoster = (movie: movieDTO) => {
-        console.log(movie);
         
         if (movie.poster_path) {
             return IMG_BASE_URL_w185 + movie.poster_path;

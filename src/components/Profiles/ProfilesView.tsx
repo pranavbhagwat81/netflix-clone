@@ -44,7 +44,7 @@ function ProfileSelector({onSetProfile}: Props) {
 
   return (
     <div className="profileselector">
-      <Typography gutterBottom>
+      <Typography component={'span'} gutterBottom>
         <div className="profileselector__title">Who's watching ?</div>
       </Typography>
       <div className=" row profileselector__users">
@@ -56,4 +56,4 @@ function ProfileSelector({onSetProfile}: Props) {
   );
 }
 
-export default ProfileSelector;
+export default React.memo(ProfileSelector);

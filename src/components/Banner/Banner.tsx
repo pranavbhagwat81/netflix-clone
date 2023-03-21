@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import requests from "../../requests";
 import "./Banner.css";
 import nobanner from "../../assets/nobanner.jpg";
@@ -6,26 +6,21 @@ import { Typography } from "@material-ui/core";
 import { useFetchRandomMovie } from "../../hooks/useFetchRandomMovie";
 import { IMG_BASE_URL_ORIGINAL, BANNER_GENRE_KEY } from '../../constants'
 
-//DTO
-import { movieDTO } from '../../dto'
-
 
 const Banner = (): JSX.Element | null => {
   
-  const { isLoading, randomMovie} = useFetchRandomMovie(BANNER_GENRE_KEY,requests.fetchTopRated,5000 )
+  const { isLoading, randomMovie, randomMovieTitle} = useFetchRandomMovie(BANNER_GENRE_KEY,requests.fetchTopRated,5000 )
 
-  const getBannerImage = (movie: movieDTO | null) => {
-    if (movie?.backdrop_path || movie?.poster_path) {
-      return `url('${IMG_BASE_URL_ORIGINAL}${movie?.backdrop_path || movie?.poster_path
-        }')`;
+  const randomMovieId = randomMovie?.id;
+
+  const getBannerImage = useMemo(() => {
+    const movieName = randomMovie?.backdrop_path || randomMovie?.poster_path || ''
+    if (movieName) {
+      return `url('${IMG_BASE_URL_ORIGINAL}${movieName}')`;
     } else {
       return `url(${nobanner})`;
     }
-  };
-
-  const getMovieTitle = (movie: movieDTO | null) => {
-    return movie?.name || movie?.title || movie?.original_name
-  }
+  }, [randomMovieId])
 
   if (isLoading) {
     return null
@@ -36,13 +31,13 @@ const Banner = (): JSX.Element | null => {
       className="banner"
       style={{
         backgroundSize: "cover",
-        backgroundImage: getBannerImage(randomMovie),
+        backgroundImage: getBannerImage,
         backgroundPosition: "center center",
       }}
     >
       <div className="banner__contents">
         <Typography className="banner__title" variant="h2" gutterBottom >
-          {getMovieTitle(randomMovie)}
+          {randomMovieTitle}
         </Typography>
         <div className="banner__buttons">
         </div>

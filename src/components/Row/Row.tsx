@@ -56,4 +56,4 @@ function Row({ title, fetchURL, isLarge }: Props): JSX.Element | null {
   );
 }
 
-export default Row;
+export default React.memo(Row);
