@@ -4,6 +4,7 @@ import YouTube from "react-youtube";
 import { Typography } from "@material-ui/core";
 import { useFetchMoviesList } from "../../hooks/useFetchMoviesList";
 import MovieBlock from "../MovieBlock";
+import Modal from "../Modal";
 
 //DTO
 import { GENRE_TYPE_DTO, movieDTO } from "../../dto";
@@ -25,6 +26,10 @@ function Row({ title, fetchURL, isLarge }: Props): JSX.Element | null {
     playerVars: {
       autoplay: 0,
     },
+  };
+
+  const handleModalClose = () => {
+    setTrailerUrl("");
   };
 
   if (!movies?.length) return null;
@@ -51,13 +56,18 @@ function Row({ title, fetchURL, isLarge }: Props): JSX.Element | null {
           }
         })}
       </div>
-
+      
       {trailerUrl && (
+        <Modal
+          isVisible={Boolean(trailerUrl)}
+          handleModalClose={handleModalClose}
+        >
           <YouTube
             className="youtube__popup"
             videoId={trailerUrl}
             opts={opts}
           ></YouTube>
+        </Modal>
       )}
     </div>
   );
