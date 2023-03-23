@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { modalCloseEventDTO } from '../../dto'
 
 const style = {
   position: "absolute" as "absolute",
@@ -24,9 +25,7 @@ const BaseModal = ({
   isVisible,
   handleModalClose,
 }: Props): JSX.Element => {
-  const handleClose = (event: any, reason: any) => {
-    console.log(event, reason);
-
+  const handleClose = (_event: Event, reason: modalCloseEventDTO) => {
     if (reason && reason == "backdropClick") {
       handleModalClose();
     }

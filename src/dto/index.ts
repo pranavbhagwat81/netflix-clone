@@ -5,7 +5,8 @@ export type GENRE_TYPE_DTO =
   | "Family"
   | "Horror"
   | "Action"
-  | "Comedy";
+  | "Comedy"
+  | "Kids"
 
 export interface ProfileInfoDTO {
   name: string, 
@@ -17,6 +18,8 @@ export interface movieBlockDTO {
   isLarge: boolean;
   fetchURL: string
 }
+
+export type modalCloseEventDTO = "backdropClick" | "escapeKeyDown"
 
 export interface movieDTO {
   "adult": boolean,

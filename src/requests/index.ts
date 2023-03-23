@@ -22,7 +22,8 @@ const requests = {
   fetchTopRated: `/movie/top_rated?api_key=${API_KEY}&language=en-US`,
   fetchInTheatres: `/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1&region=IN`,
   fetchUpcoming: `/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1&region=IN`,
-  fetchLatest: `/movie/latest?api_key=${API_KEY}&language=en-US&page=1&region=IN`
+  fetchLatest: `/movie/latest?api_key=${API_KEY}&language=en-US&page=1&region=IN`,
+  fetchKidsMovies: `/discover/movie?api_key=${API_KEY}&certification_country=US&certification.lte=G&sort_by=popularity.asc`
 };
 
 export default requests;

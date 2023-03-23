@@ -17,3 +17,35 @@ body {
   line-height: 1.2;
   letter-spacing: -0.00833em;
 }
+
+body::-webkit-scrollbar {
+  /* display: none; */
+  width: 15px;
+  border-radius: 3px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #595858;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+body::-webkit-scrollbar-track {
+  background: #000;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track-piece {
+  background: #000;
+}
+
+body::-webkit-scrollbar-corner {
+  background: #999;
+}
+
+body::-webkit-resizer {
+  background: #111;
+}
