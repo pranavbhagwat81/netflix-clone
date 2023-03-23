@@ -48,13 +48,4 @@ const BaseModal = ({
   );
 };
 
-function moviePropsAreEqual(prevMovie: any, nextMovie: any) {
-  console.log(prevMovie, nextMovie);
-
-  return (
-    prevMovie.title === nextMovie.title &&
-    prevMovie.releaseDate === nextMovie.releaseDate
-  );
-}
-
-export default React.memo(BaseModal, moviePropsAreEqual);
+export default React.memo(BaseModal);
