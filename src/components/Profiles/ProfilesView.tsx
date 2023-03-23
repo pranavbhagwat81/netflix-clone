@@ -39,7 +39,7 @@ function ProfileSelector({onSetProfile}: Props) {
   const profiles: ProfileInfoDTO[] = [
     { name: "Anand", pic: anand_profile_pic },
     { name: "Vijay", pic: vijay_profile_pic },
-    { name: "Children", pic: children_profile_pic },
+    { name: "Sid", pic: children_profile_pic },
   ];
 
   return (

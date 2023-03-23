@@ -10,20 +10,17 @@ import { movieDTO } from '../../dto';
 interface MovieBlockProps {
     movie: movieDTO,
     isLarge?: string,
-    setTrailerUrl: Function
+    setTrailerUrl: Function,
 }
 
 const MovieBlock = ({ movie, isLarge, setTrailerUrl }: MovieBlockProps): JSX.Element | null => {
 
-
-    const { isLoading, data, refetch} = useFetchMovieDetails(movie.id);
-    if(!isLoading){
-        data?.length && setTrailerUrl(data[0].key)
-    }
-
+    const { isLoading, refetch} = useFetchMovieDetails(movie.id);
+   
     const handleClick = () => {
-        setTrailerUrl("");
-        refetch();
+        refetch().then((refetchResponse: any)=>{
+            setTrailerUrl(refetchResponse?.data[0].key || null)
+        });
     };
 
     const getMoviePoster = (movie: movieDTO) => {
@@ -53,4 +50,4 @@ const MovieBlock = ({ movie, isLarge, setTrailerUrl }: MovieBlockProps): JSX.Ele
     );
 }
 
-export default MovieBlock
+export default React.memo(MovieBlock)
