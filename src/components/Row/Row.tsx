@@ -8,14 +8,15 @@ import Modal from "../Modal";
 
 //DTO
 import { GENRE_TYPE_DTO, movieDTO } from "../../dto";
+import { getMoviePath } from "../../utils";
 
-interface Props {
+interface RowProps {
   title: GENRE_TYPE_DTO;
   fetchURL: string;
   isLarge?: string;
 }
 
-function Row({ title, fetchURL, isLarge }: Props): JSX.Element | null {
+function Row({ title, fetchURL, isLarge }: RowProps): JSX.Element | null {
   const [trailerUrl, setTrailerUrl] = useState<string>("");
 
   const { data: movies } = useFetchMoviesList(title, fetchURL);
@@ -42,7 +43,7 @@ function Row({ title, fetchURL, isLarge }: Props): JSX.Element | null {
 
       <div className="row__posters">
         {movies.map((movie: movieDTO) => {
-          if (movie.poster_path || movie.backdrop_path) {
+          if (getMoviePath(movie)) {
             return (
               <MovieBlock
                 key={movie.id}

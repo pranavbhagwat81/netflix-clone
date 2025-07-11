@@ -3,20 +3,16 @@ import requests from "../../requests";
 import "./Banner.css";
 import nobanner from "../../assets/nobanner.jpg";
 import { Typography } from "@material-ui/core";
-import { useFetchRandomMovie } from "../../hooks/useFetchRandomMovie";
+import { useFetchRandomMovieDetails } from "../../hooks/useFetchRandomMovieDetails";
 import { IMG_BASE_URL_ORIGINAL, BANNER_GENRE_KEY } from '../../constants'
-
 
 const Banner = (): JSX.Element | null => {
   
-  const { isLoading, randomMovie, randomMovieTitle} = useFetchRandomMovie(BANNER_GENRE_KEY,requests.fetchTopRated,5000 )
-
-  const randomMovieId = randomMovie?.id;
+  const { isLoading, randomMovieId, randomMovieName, randomMovieTitle} = useFetchRandomMovieDetails(BANNER_GENRE_KEY,requests.fetchTopRated,5000 )
 
   const getBannerImage = useMemo(() => {
-    const movieName = randomMovie?.backdrop_path || randomMovie?.poster_path || ''
-    if (movieName) {
-      return `url('${IMG_BASE_URL_ORIGINAL}${movieName}')`;
+    if(randomMovieName) {
+      return `url('${IMG_BASE_URL_ORIGINAL}${randomMovieName}')`;
     } else {
       return `url(${nobanner})`;
     }

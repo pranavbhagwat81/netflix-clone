@@ -39,3 +39,7 @@ export interface movieDTO {
   "vote_average": number,
   "vote_count": number
 }
+
+export interface RequestsDTO {
+  [key: string]: string;
+}

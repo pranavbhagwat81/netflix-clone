@@ -1,11 +1,11 @@
 import React from 'react'
 import "../Row/row.css";
-import { IMG_BASE_URL_w185 } from '../../constants'
 import { useFetchMovieDetails } from '../../hooks/useFetchMovieDetails'
 import noposter from '../../assets/noposter.jpg'
 
 //DTO
 import { movieDTO } from '../../dto';
+import { getMovieId, getMovieName, getMoviePoster } from '../../utils';
 
 interface MovieBlockProps {
     movie: movieDTO,
@@ -23,21 +23,10 @@ const MovieBlock = ({ movie, isLarge, setTrailerUrl }: MovieBlockProps): JSX.Ele
         });
     };
 
-    const getMoviePoster = (movie: movieDTO) => {
-        
-        if (movie.poster_path) {
-            return IMG_BASE_URL_w185 + movie.poster_path;
-        } else if (movie.backdrop_path) {
-            return IMG_BASE_URL_w185 + movie.backdrop_path;
-        }
-        
-        return '';
-    };
-
     if(isLoading) return null
     return (
         <img
-            key={movie.id}
+            key={getMovieId(movie)}
             onClick={handleClick}
             className={`row__poster ${isLarge && "row__posterLarge"}`}
             src={getMoviePoster(movie)}
@@ -45,7 +34,7 @@ const MovieBlock = ({ movie, isLarge, setTrailerUrl }: MovieBlockProps): JSX.Ele
                 currentTarget.onerror = null; // prevents looping
                 currentTarget.src=noposter;
             }}
-            alt={movie.name}
+            alt={getMovieName(movie)}
         ></img>
     );
 }
